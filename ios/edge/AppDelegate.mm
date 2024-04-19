@@ -7,7 +7,7 @@
 // Edge additions:
 #import "ExpoModulesCore-Swift.h"
 #import "Edge-Swift.h"
-#import "RNBootSplash.h"
+// #import "RNBootSplash.h"
 #import <Bugsnag/Bugsnag.h>
 #import <Firebase.h>
 #import <FirebaseMessaging.h>
@@ -95,7 +95,7 @@
                                           moduleName:moduleName
                                            initProps:initProps];
 
-  [RNBootSplash initWithStoryboard:@"LaunchScreen" rootView:rootView];
+  // [RNBootSplash initWithStoryboard:@"LaunchScreen" rootView:rootView];
 
   return rootView;
 }
