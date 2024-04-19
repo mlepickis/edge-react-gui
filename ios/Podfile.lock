@@ -61,36 +61,6 @@ PODS:
     - React-Core
   - edge-login-ui-rn (3.8.0):
     - React-Core
-  - EXConstants (15.4.5):
-    - ExpoModulesCore
-  - EXFont (11.10.3):
-    - ExpoModulesCore
-  - Expo (50.0.14):
-    - ExpoModulesCore
-  - ExpoFileSystem (16.0.8):
-    - ExpoModulesCore
-  - ExpoKeepAwake (12.8.2):
-    - ExpoModulesCore
-  - ExpoModulesCore (1.11.12):
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2022.05.16.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Codegen
-    - React-Core
-    - React-debug
-    - React-Fabric
-    - React-graphics
-    - React-ImageManager
-    - React-NativeModulesApple
-    - React-RCTAppDelegate
-    - React-RCTFabric
-    - React-rendererdebug
-    - React-utils
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
-    - Yoga
   - FBLazyVector (0.73.6)
   - Firebase/AnalyticsWithoutAdIdSupport (8.15.0):
     - Firebase/CoreOnly
@@ -187,8 +157,6 @@ PODS:
   - hermes-engine (0.73.6):
     - hermes-engine/Pre-built (= 0.73.6)
   - hermes-engine/Pre-built (0.73.6)
-  - ImageColors (2.4.0):
-    - ExpoModulesCore
   - libevent (2.1.12)
   - libwebp (1.2.1):
     - libwebp/demux (= 1.2.1)
@@ -1918,16 +1886,9 @@ DEPENDENCIES:
   - edge-currency-accountbased (from `../node_modules/edge-currency-accountbased`)
   - edge-exchange-plugins (from `../node_modules/edge-exchange-plugins`)
   - edge-login-ui-rn (from `../node_modules/edge-login-ui-rn`)
-  - EXConstants (from `../node_modules/expo-constants/ios`)
-  - EXFont (from `../node_modules/expo-font/ios`)
-  - Expo (from `../node_modules/expo`)
-  - ExpoFileSystem (from `../node_modules/expo-file-system/ios`)
-  - ExpoKeepAwake (from `../node_modules/expo-keep-awake/ios`)
-  - ExpoModulesCore (from `../node_modules/expo-modules-core`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
-  - ImageColors (from `../node_modules/react-native-image-colors/ios`)
   - libevent (~> 2.1.12)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCT-Folly/Fabric (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
@@ -2093,18 +2054,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/edge-exchange-plugins"
   edge-login-ui-rn:
     :path: "../node_modules/edge-login-ui-rn"
-  EXConstants:
-    :path: "../node_modules/expo-constants/ios"
-  EXFont:
-    :path: "../node_modules/expo-font/ios"
-  Expo:
-    :path: "../node_modules/expo"
-  ExpoFileSystem:
-    :path: "../node_modules/expo-file-system/ios"
-  ExpoKeepAwake:
-    :path: "../node_modules/expo-keep-awake/ios"
-  ExpoModulesCore:
-    :path: "../node_modules/expo-modules-core"
   FBLazyVector:
     :path: "../node_modules/react-native/Libraries/FBLazyVector"
   glog:
@@ -2112,8 +2061,6 @@ EXTERNAL SOURCES:
   hermes-engine:
     :podspec: "../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec"
     :tag: hermes-2024-02-20-RNv0.73.5-18f99ace4213052c5e7cdbcd39ee9766cd5df7e4
-  ImageColors:
-    :path: "../node_modules/react-native-image-colors/ios"
   RCT-Folly:
     :podspec: "../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec"
   RCTRequired:
@@ -2313,12 +2260,6 @@ SPEC CHECKSUMS:
   edge-currency-accountbased: c64f86534b11c093f417cc58c56118b3e2bc3405
   edge-exchange-plugins: 05e341eb7cc822037051c295f3054ad04452d657
   edge-login-ui-rn: 2ff167779e20cd4466905a4878a9c6d6a79d2f8c
-  EXConstants: 988aa430ca0f76b43cd46b66e7fae3287f9cc2fc
-  EXFont: f20669cb266ef48b004f1eb1f2b20db96cd1df9f
-  Expo: e01a77c6fa4bc80a6d1bb949cda1d12d21044abd
-  ExpoFileSystem: eecaf6796aed0f4dd20042dc2ca2cac6c4bc1185
-  ExpoKeepAwake: 0f5cad99603a3268e50af9a6eb8b76d0d9ac956c
-  ExpoModulesCore: 5ba70816562a205894391952a4997b18d5d777b0
   FBLazyVector: f64d1e2ea739b4d8f7e4740cde18089cd97fe864
   Firebase: 5f8193dff4b5b7c5d5ef72ae54bb76c08e2b841d
   FirebaseABTesting: 10cbce8db9985ae2e3847ea44e9947dd18f94e10
@@ -2335,7 +2276,6 @@ SPEC CHECKSUMS:
   GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
   gRPC-Swift: 74adcaaa62ac5e0a018938840328cb1fdfb09e7b
   hermes-engine: 9cecf9953a681df7556b8cc9c74905de8f3293c0
-  ImageColors: 88be684570585c07ae2750bff34eb7b78bfc53b4
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   libwebp: 98a37e597e40bfdb4c911fc98f2c53d0b12d05fc
   Logging: beeb016c9c80cf77042d62e83495816847ef108b
@@ -2448,10 +2388,10 @@ SPEC CHECKSUMS:
   SwiftNIOTLS: 598af547490133e9aac52aed0c23c4a90c31dcfc
   SwiftNIOTransportServices: 0b2b407819d82eb63af558c5396e33c945759503
   SwiftProtobuf: b70d65f419fbfe61a2d58003456ca5da58e337d6
-  Yoga: d17d2cc8105eed528474683b42e2ea310e1daf61
+  Yoga: 805bf71192903b20fc14babe48080582fee65a80
   ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
   ZXingObjC: fdbb269f25dd2032da343e06f10224d62f537bdb
 
-PODFILE CHECKSUM: 03f6685399abca74db3b218f6fe2e64309a56fff
+PODFILE CHECKSUM: 8bfdeb5ce7b1cbf3183f55d4d017f689b6cab44f
 
 COCOAPODS: 1.15.2
