@@ -80,6 +80,10 @@ class MainApplication : Application(), ReactApplication {
 
         // Expo addition:
         ApplicationLifecycleDispatcher.onApplicationCreate(this)
+
+        // val nullPointer: String? = null
+        // // The following line will cause a crash by trying to access a method on a null object
+        // val length = nullPointer!!.length
     }
 
     // Expo addition:

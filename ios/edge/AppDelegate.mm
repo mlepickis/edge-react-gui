@@ -67,6 +67,10 @@
   // Client-side background fetch interval:
   [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:60*60*12];
 
+  // XXX Fake crash
+  // int *nullPointer = NULL;
+  // *nullPointer = 0;
+
   // React template code:
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }

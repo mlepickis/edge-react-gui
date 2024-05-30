@@ -79,6 +79,11 @@ export const initInfoServer = async () => {
   const osVersion = getOsVersion()
   const version = getVersion()
 
+  // make me crash
+  // @ts-expect-error
+  const t = version.make.me.crash
+  console.log(t)
+
   const queryInfo = async () => {
     try {
       const response = await fetchInfo(`v1/inforollup/${config.appId ?? 'edge'}?os=${osType}&osVersion=${osVersion}&appVersion=${version}`)
