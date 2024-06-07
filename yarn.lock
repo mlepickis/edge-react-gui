@@ -16314,13 +16314,6 @@ react-native-bootsplash@^4.7.4:
     picocolors "^1.0.0"
     sharp "^0.32.1"
 
-react-native-camera@^1.13.1:
-  version "1.13.1"
-  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-1.13.1.tgz#19277ccae0a49dbf1b96049da5b95c847ea7aff2"
-  integrity sha512-wYjMi06ygYIiHRM4dSCH914xFUay7Wplx0bAej4iBkZeh54M4AxJDcF4vVZ5vdkpuAg8zvof3l+L1VhcKziMgw==
-  dependencies:
-    prop-types "^15.6.2"
-
 react-native-check-version@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/react-native-check-version/-/react-native-check-version-1.0.5.tgz#45c622214efbfbb106fd8cfb7cf73d520d21a691"
@@ -16585,6 +16578,11 @@ react-native-vector-icons@^9.2.0:
   dependencies:
     prop-types "^15.7.2"
     yargs "^16.1.1"
+
+react-native-vision-camera@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-vision-camera/-/react-native-vision-camera-4.1.0.tgz#fbc0b3505d16b66b353e71d47ae588e3ab8bfbf7"
+  integrity sha512-ap3dzMh9ixASvr/19kbpCzaCBJp75ebEIAwVXd42sD8UdUNLVkYI2P4eTdU43k9nFhgEE3gDpXE0nFNzvFmcZA==
 
 react-native-webview@^13.8.4:
   version "13.8.4"

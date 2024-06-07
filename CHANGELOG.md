@@ -3,6 +3,7 @@
 ## Unreleased
 
 - added: "Force Light Account Creation" developer mode setting
+- changed: Replaced 'react-native-camera' with 'react-native-vision-camera'
 
 ## 4.8.0
 
