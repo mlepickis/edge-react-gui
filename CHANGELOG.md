@@ -3,6 +3,7 @@
 ## Unreleased
 
 - added: "Force Light Account Creation" developer mode setting
+- changed: Prefer DEX estimate quotes over CEX fixed rate quotes if the DEX quote has a better rate
 - changed: Light account backup notification card now persists no matter what while logged in to a light account
 
 ## 4.8.0
