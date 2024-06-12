@@ -179,6 +179,7 @@ export interface FiatPluginRegionCode {
 }
 export interface FiatPluginStartParams {
   direction: 'buy' | 'sell'
+  defaultIsoFiat: string
   paymentTypes: FiatPaymentType[]
   regionCode: FiatPluginRegionCode
   forceFiatCurrencyCode?: string

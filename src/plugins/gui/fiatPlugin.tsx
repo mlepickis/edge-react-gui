@@ -43,6 +43,7 @@ export const SendErrorBackPressed = 'SendErrorBackPressed'
 export const executePlugin = async (params: {
   account: EdgeAccount
   disklet: Disklet
+  defaultIsoFiat: string
   deviceId: string
   direction: 'buy' | 'sell'
   disablePlugins?: NestedDisableMap
@@ -58,6 +59,7 @@ export const executePlugin = async (params: {
   const {
     disablePlugins = {},
     account,
+    defaultIsoFiat,
     deviceId,
     direction,
     disklet,
@@ -282,6 +284,7 @@ export const executePlugin = async (params: {
   const paymentTypes = paymentType != null ? [paymentType] : []
   const startPluginParams: FiatPluginStartParams = {
     direction,
+    defaultIsoFiat,
     regionCode,
     paymentTypes,
     forceFiatCurrencyCode,
