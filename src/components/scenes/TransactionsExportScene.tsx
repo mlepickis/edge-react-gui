@@ -42,6 +42,7 @@ interface OwnProps extends EdgeSceneProps<'transactionsExport'> {}
 
 interface StateProps {
   account: EdgeAccount
+  defaultIsoFiat: string
   multiplier: string
   exchangeMultiplier: string
   parentMultiplier: string
@@ -213,7 +214,7 @@ class TransactionsExportSceneComponent extends React.PureComponent<Props, State>
   }
 
   handleSubmit = async (): Promise<void> => {
-    const { account, exchangeMultiplier, multiplier, parentMultiplier, route } = this.props
+    const { account, defaultIsoFiat, exchangeMultiplier, multiplier, parentMultiplier, route } = this.props
     const { sourceWallet, currencyCode } = route.params
     const { isExportBitwave, isExportQbo, isExportCsv, startDate, endDate } = this.state
     const { tokenId } = this.props
@@ -312,7 +313,7 @@ class TransactionsExportSceneComponent extends React.PureComponent<Props, State>
 
     // The non-string result appears to be a bug in the core,
     // which we are relying on to determine if the date range is empty:
-    const csvFile = await exportTransactionsToCSV(sourceWallet, txs, currencyCode, multiplier)
+    const csvFile = await exportTransactionsToCSV(sourceWallet, defaultIsoFiat, txs, currencyCode, multiplier)
     if (typeof csvFile !== 'string' || csvFile === '' || csvFile == null) {
       showError(lstrings.export_transaction_export_error)
       return
@@ -328,7 +329,7 @@ class TransactionsExportSceneComponent extends React.PureComponent<Props, State>
     }
 
     if (isExportQbo) {
-      const qboFile = await exportTransactionsToQBO(sourceWallet, txs, currencyCode, multiplier)
+      const qboFile = await exportTransactionsToQBO(defaultIsoFiat, txs, currencyCode, multiplier)
       files.push({
         contents: qboFile,
         mimeType: 'application/vnd.intu.qbo',
@@ -394,6 +395,7 @@ class TransactionsExportSceneComponent extends React.PureComponent<Props, State>
 export const TransactionsExportScene = connect<StateProps, DispatchProps, OwnProps>(
   (state, { route: { params } }) => ({
     account: state.core.account,
+    defaultIsoFiat: state.ui.settings.defaultIsoFiat,
     multiplier: selectDisplayDenomByCurrencyCode(state, params.sourceWallet.currencyConfig, params.currencyCode).multiplier,
     exchangeMultiplier: getExchangeDenomByCurrencyCode(params.sourceWallet.currencyConfig, params.currencyCode).multiplier,
     parentMultiplier: getExchangeDenom(params.sourceWallet.currencyConfig, null).multiplier,
