@@ -197,6 +197,7 @@ const emptyDenomination = { name: '', multiplier: '0' }
 export const FioRequestRow = connect<StateProps, {}, OwnProps>(
   (state, ownProps) => {
     const { fioRequest } = ownProps
+    const { defaultFiat, defaultIsoFiat } = state.ui.settings
     let displayDenomination = emptyDenomination
     let exchangeDenomination = emptyDenomination
     const wallet = getSelectedCurrencyWallet(state)
@@ -227,11 +228,10 @@ export const FioRequestRow = connect<StateProps, {}, OwnProps>(
     } catch (e: any) {
       console.log('No denomination for this Token Code -', tokenCode)
     }
-    const fiatSymbol = getSymbolFromCurrency(wallet.fiatCurrencyCode.replace('iso:', ''))
-    const isoFiatCurrencyCode = wallet.fiatCurrencyCode
+    const fiatSymbol = getSymbolFromCurrency(defaultFiat)
     const exchangeRates = state.exchangeRates
 
-    const rateKey = `${tokenCode}_${isoFiatCurrencyCode}`
+    const rateKey = `${tokenCode}_${defaultIsoFiat}`
     const fiatPerCrypto = exchangeRates[rateKey] ?? '0'
     const fiatAmount = formatNumber(mul(fiatPerCrypto, fioRequest.content.amount), { toFixed: 2 }) || '0'
 

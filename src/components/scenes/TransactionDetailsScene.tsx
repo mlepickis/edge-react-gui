@@ -83,10 +83,9 @@ const TransactionDetailsComponent = (props: Props) => {
   // #region Crypto Fiat Rows
 
   // Look up wallet stuff:
-  const isoFiatCurrencyCode = useWatch(wallet, 'fiatCurrencyCode')
+  const { defaultFiat, defaultIsoFiat } = useSelector(state => state.ui.settings)
   const walletName = useWatch(wallet, 'name')
-  const fiatCurrencyCode = isoFiatCurrencyCode.replace('iso:', '')
-  const fiatSymbol = getSymbolFromCurrency(fiatCurrencyCode)
+  const fiatSymbol = getSymbolFromCurrency(defaultFiat)
 
   // Look up transaction stuff:
   const absoluteAmount = abs(nativeAmount)
@@ -94,19 +93,17 @@ const TransactionDetailsComponent = (props: Props) => {
   // Look up the current price:
   const exchangeDenom = getExchangeDenom(wallet.currencyConfig, tokenId)
   const absExchangeAmount = convertNativeToExchange(exchangeDenom.multiplier)(absoluteAmount)
-  const currentFiat = useSelector(state =>
-    parseFloat(convertCurrencyFromExchangeRates(state.exchangeRates, currencyCode, isoFiatCurrencyCode, absExchangeAmount))
-  )
+  const currentFiat = useSelector(state => parseFloat(convertCurrencyFromExchangeRates(state.exchangeRates, currencyCode, defaultIsoFiat, absExchangeAmount)))
 
   // Look up the historical price:
   const dateObj = new Date(date * 1000)
   const dateString = dateObj.toLocaleString()
   const isoDate = dateObj.toISOString()
-  const historicRate = useHistoricalRate(`${currencyCode}_${isoFiatCurrencyCode}`, isoDate)
+  const historicRate = useHistoricalRate(`${currencyCode}_${defaultIsoFiat}`, isoDate)
   const historicFiat = historicRate * Number(absExchangeAmount)
 
   // Figure out which amount to show:
-  const metadataFiat = localMetadata.exchangeAmount?.[wallet.fiatCurrencyCode]
+  const metadataFiat = localMetadata.exchangeAmount?.[defaultIsoFiat]
   const originalFiat = metadataFiat == null || metadataFiat === 0 ? historicFiat : Math.abs(metadataFiat)
 
   // Percent difference:
@@ -122,12 +119,12 @@ const TransactionDetailsComponent = (props: Props) => {
       <TextInputModal
         bridge={bridge}
         initialValue={originalFiatText}
-        inputLabel={fiatCurrencyCode}
+        inputLabel={defaultFiat}
         returnKeyType="done"
         keyboardType="numeric"
         submitLabel={lstrings.string_save}
         textSizeRem={1.5}
-        title={sprintf(lstrings.transaction_details_amount_in_fiat, fiatCurrencyCode)}
+        title={sprintf(lstrings.transaction_details_amount_in_fiat, defaultFiat)}
       />
     ))
       .then(async inputText => {
@@ -141,7 +138,7 @@ const TransactionDetailsComponent = (props: Props) => {
         // Check for NaN, Infinity, and 0:
         if (JSON.stringify(amountFiat) === 'null') return
 
-        await onSaveTxDetails({ exchangeAmount: { [wallet.fiatCurrencyCode]: amountFiat } })
+        await onSaveTxDetails({ exchangeAmount: { [defaultIsoFiat]: amountFiat } })
       })
       .catch(error => showError(error))
   })
@@ -350,7 +347,7 @@ const TransactionDetailsComponent = (props: Props) => {
       <EdgeAnim enter={{ type: 'fadeInUp', distance: 40 }}>
         <CardUi4 sections>
           <TxCryptoAmountRow transaction={transaction} wallet={wallet} />
-          <RowUi4 rightButtonType="editable" title={sprintf(lstrings.transaction_details_amount_in_fiat, fiatCurrencyCode)} onPress={handleEdit}>
+          <RowUi4 rightButtonType="editable" title={sprintf(lstrings.transaction_details_amount_in_fiat, defaultFiat)} onPress={handleEdit}>
             <View style={styles.tileRow}>
               <EdgeText>{fiatSymbol + ' '}</EdgeText>
               <EdgeText>{originalFiatText}</EdgeText>

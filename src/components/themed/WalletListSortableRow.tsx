@@ -30,7 +30,7 @@ function WalletListSortableRowComponent(props: Props) {
   const dispatch = useDispatch()
 
   const showBalance = useSelector(state => state.ui.settings.isAccountBalanceVisible)
-  const defaultIsoFiat = useSelector(state => state.ui.settings.defaultIsoFiat)
+  const { defaultFiat, defaultIsoFiat } = useSelector(state => state.ui.settings)
   const exchangeRates = useSelector(state => state.exchangeRates)
   const exchangeDenomination = wallet == null ? null : getExchangeDenom(wallet.currencyConfig, null)
 
@@ -45,7 +45,7 @@ function WalletListSortableRowComponent(props: Props) {
   }
 
   const { currencyCode } = wallet.currencyInfo
-  const walletFiatSymbol = getSymbolFromCurrency(wallet.fiatCurrencyCode)
+  const fiatSymbol = getSymbolFromCurrency(defaultFiat)
   const displayDenomination = dispatch((_, getState) => selectDisplayDenom(getState(), wallet.currencyConfig, null))
   const multiplier = displayDenomination.multiplier
   const name = getWalletName(wallet)
@@ -58,7 +58,7 @@ function WalletListSortableRowComponent(props: Props) {
   const finalCryptoAmountString = showBalance ? `${symbol || ''} ${finalCryptoAmount}` : ''
   const fiatBalance = calculateFiatBalance(wallet, defaultIsoFiat, exchangeDenomination, exchangeRates)
   const fiatBalanceFormat = fiatBalance && gt(fiatBalance, '0.000001') ? fiatBalance : 0
-  const fiatBalanceSymbol = showBalance && walletFiatSymbol ? walletFiatSymbol : ''
+  const fiatBalanceSymbol = showBalance && fiatSymbol ? fiatSymbol : ''
   const fiatBalanceString = showBalance ? formatNumber(fiatBalanceFormat, { toFixed: FIAT_PRECISION }) : ''
 
   return (

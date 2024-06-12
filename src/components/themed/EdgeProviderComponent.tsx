@@ -55,7 +55,7 @@ export function EdgeProviderComponent(props: Props): JSX.Element {
   const accountReferral = useSelector(state => state.account.accountReferral)
   const selectedWalletId = useSelector(state => state.ui.wallets.selectedWalletId)
   const selectedCurrencyCode = useSelector(state => state.ui.wallets.selectedCurrencyCode)
-  const countryCode = useSelector(state => state.ui.settings.countryCode)
+  const { countryCode, defaultIsoFiat } = useSelector(state => state.ui.settings)
 
   // Get the promo information:
   const { promoCode, promoMessage } = React.useMemo(() => {
@@ -120,6 +120,7 @@ export function EdgeProviderComponent(props: Props): JSX.Element {
     const selectedTokenId = selectedWallet == null ? null : getTokenIdForced(account, selectedWallet.currencyInfo.pluginId, selectedCurrencyCode)
     return new EdgeProviderServer({
       account,
+      defaultIsoFiat,
       dispatch,
       navigation,
       plugin,

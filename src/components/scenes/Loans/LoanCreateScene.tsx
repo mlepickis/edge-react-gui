@@ -84,11 +84,11 @@ export const LoanCreateScene = (props: Props) => {
   const styles = getStyles(theme)
 
   const account = useSelector(state => state.core.account)
+  const { defaultFiat, defaultIsoFiat: isoFiatCurrencyCode } = useSelector(state => state.ui.settings)
   const wallets = useWatch(account, 'currencyWallets')
   const allTokens = useAllTokens(account)
 
-  const { fiatCurrencyCode: isoFiatCurrencyCode, currencyInfo: borrowEngineCurrencyInfo } = borrowEngineWallet
-  const fiatCurrencyCode = isoFiatCurrencyCode.replace('iso:', '')
+  const { currencyInfo: borrowEngineCurrencyInfo } = borrowEngineWallet
   const borrowEnginePluginId = borrowEngineCurrencyInfo.pluginId
 
   // Hard-coded src/dest assets, used as intermediate src/dest steps for cases if the
@@ -365,7 +365,7 @@ export const LoanCreateScene = (props: Props) => {
             wallet={destWallet == null ? borrowEngineWallet : destWallet}
             iconUri={iconUri}
             inputModalMessage={sprintf(lstrings.loan_loan_amount_input_message_s, displayLtvLimit)}
-            title={sprintf(lstrings.loan_enter_s_amount_s, lstrings.loan_fragment_loan, fiatCurrencyCode)}
+            title={sprintf(lstrings.loan_enter_s_amount_s, lstrings.loan_fragment_loan, defaultFiat)}
             tokenId={destTokenId}
             onAmountChanged={handleBorrowAmountChanged}
           />
