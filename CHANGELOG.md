@@ -4,6 +4,7 @@
 
 - added: "Force Light Account Creation" developer mode setting
 - changed: Light account backup notification card now persists no matter what while logged in to a light account
+- removed: Wallet-specific fiat currency setting. Account-wide fiat currency setting is now used for app-wide fiat calculation and display
 
 ## 4.8.0
 
