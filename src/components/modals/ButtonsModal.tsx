@@ -12,6 +12,8 @@ import { ModalUi4 } from '../ui4/ModalUi4'
 export interface ButtonInfo {
   label: string
 
+  disabled?: boolean
+
   // The modal will show a spinner as long as this promise is pending.
   // Returning true will dismiss the modal,
   // but returning false will leave the modal up.
@@ -40,6 +42,9 @@ export interface ButtonModalProps<Buttons> {
   /** @deprecated. Does nothing. */
   // eslint-disable-next-line react/no-unused-prop-types
   closeArrow?: boolean
+
+  /** Called when modal is dismissed */
+  onCancel?: () => void | Promise<void>
 }
 
 /**
@@ -54,11 +59,14 @@ export interface ButtonModalProps<Buttons> {
  * or other interactive elements.
  */
 export function ButtonsModal<Buttons extends { [key: string]: ButtonInfo }>(props: ButtonModalProps<Buttons>) {
-  const { bridge, title, message, children, buttons, disableCancel = false, fullScreen = false, warning } = props
+  const { bridge, title, message, children, buttons, disableCancel = false, fullScreen = false, warning, onCancel } = props
   const theme = useTheme()
   const styles = getStyles(theme)
 
-  const handleCancel = useHandler(() => bridge.resolve(undefined))
+  const handleCancel = useHandler(async () => {
+    if (onCancel != null) await onCancel()
+    bridge.resolve(undefined)
+  })
 
   const containerStyle: ViewStyle = {
     flexGrow: fullScreen ? 1 : 0,
@@ -66,7 +74,7 @@ export function ButtonsModal<Buttons extends { [key: string]: ButtonInfo }>(prop
   }
 
   const buttonInfo = Object.keys(buttons).map((key, i, arr) => {
-    const { label, onPress } = buttons[key]
+    const { label, disabled, onPress } = buttons[key]
 
     const handlePress = (): Promise<void> | undefined => {
       if (onPress == null) {
@@ -81,7 +89,7 @@ export function ButtonsModal<Buttons extends { [key: string]: ButtonInfo }>(prop
       )
     }
 
-    return { label, onPress: handlePress }
+    return { label, disabled, onPress: handlePress }
   })
 
   return (
